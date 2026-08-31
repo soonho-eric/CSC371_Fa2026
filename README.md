@@ -30,4 +30,13 @@ conda activate csc371
 conda install numpy scipy matplotlib jupyterlab
 ```
 
-Create a Jupyter notebook. Create a 'Hello World!' script and play around with the environment.
+Create a Jupyter notebook titled "Day01.ipynb". Create a 'Hello World!' script and play around with the environment.
+
+In your terminal, run
+```bash
+git status
+git add .
+git status
+git commit -m 'Day 1'
+git push
+```
