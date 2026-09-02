@@ -204,3 +204,4 @@ To check the status of the repository:
 ```bash
 git status
 ```
+
