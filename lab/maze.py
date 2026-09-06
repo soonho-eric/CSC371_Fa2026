@@ -13,7 +13,7 @@ maze2 = [
 '#.##..#.###.#',
 '#..#......#.#',
 '##.########.#',
-'#......#...G#',
+'#G.....#....#',
 '#############']
 
 maze3 = [
@@ -74,3 +74,73 @@ def print_maze(maze, path=None):
                 line += cell
 
         print(line)
+
+
+
+# Plotting functions
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def plot_maze(maze):
+    """ Visualize the maze."""
+    rows = len(maze)
+    cols = len(maze[0])
+    
+    values = np.full((rows, cols), np.nan)
+        
+    # Use -1 for walls
+    for row in range(rows):
+        for col in range(cols):
+            if maze[row][col] == "#":
+                values[row, col] = -1
+                
+    plt.figure(figsize=(6/rows*cols, 6))
+    plt.imshow(values)
+    
+    start = find_symbol(maze, "S")
+    goal = find_symbol(maze, "G")
+    plt.scatter(start[1], start[0], s=200, marker="o")
+    plt.scatter(goal[1], goal[0], s=200, marker="*")
+    plt.xticks([])
+    plt.yticks([])
+    plt.show()
+
+
+def plot_search(maze, expanded, path=None):
+    """ Visualize the searched states.
+        Draw the final path if provided."""
+    rows = len(maze)
+    cols = len(maze[0])
+    # NaN = unexpanded open cell
+    values = np.full((rows, cols), np.nan)
+    
+    # Record expansion order
+    for step, (row, col) in enumerate(expanded):
+        values[row, col] = step
+        
+    # Use -1 for walls
+    for row in range(rows):
+        for col in range(cols):
+            if maze[row][col] == "#":
+                values[row, col] = -1
+                
+    plt.figure(figsize=(6/rows*cols, 6))
+    plt.imshow(values)
+    
+    if path is not None:
+        path_rows = [state[0] for state in path]
+        path_cols = [state[1] for state in path]
+        plt.plot(path_cols, path_rows, linewidth=3)
+        
+    start = find_symbol(maze, "S")
+    goal = find_symbol(maze, "G")
+    plt.scatter(start[1], start[0], s=200, marker="o")
+    plt.scatter(goal[1], goal[0], s=200, marker="*")
+    cbar = plt.colorbar()
+    cbar.ax.tick_params(labelsize=12)          # adjust tick font size
+    cbar.set_label("Expansion order", fontsize=12)  # add label
+    plt.xticks([])
+    plt.yticks([])
+    plt.show()
