@@ -6,6 +6,16 @@ Materials for CSC 371: Artificial Intelligence and Applied Machine Learning at R
 
 Welcome to CSC 371! In this class we will learn AI and ML by writing and building.
 
+## Lab 2
+
+Copy `lab2-local-search` to your personal repo. From `git bash` or terminal: 
+
+```bash
+cp -r /path/to/CSC371_Fa2026/lab2-local-search /path/to/MyCSC371/
+```
+
+The `-r` option is necessary to copy directories! Then look at the lab readme and get started on the notebook.
+
 ## Day 1
 
 Install Git and clone this repository using [this guide](docs/git_setup.md).
